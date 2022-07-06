@@ -7,6 +7,9 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+set(THREADS_PREFER_PTHREAD_FLAG ON)              
+find_package(Threads REQUIRED)    
+
 if (MSVC)
 	set(CMAKE_CXX_FLAGS "/W4 /EHsc")
 else()
@@ -25,3 +28,5 @@ include_directories(
 
 add_executable(project "src/main.cpp")
 add_test(NAME project COMMAND project)
+
+target_link_libraries(project PUBLIC "-pthread")
